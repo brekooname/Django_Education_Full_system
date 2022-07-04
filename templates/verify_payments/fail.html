@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Success Payment{% endblock title %}
+{% block header_style %}
+<style>
+    .navbar{
+        background: #2f2d51;
+    }
+</style>
+{% endblock header_style %}
+{% block content %}
+
+<div class="container-fluid bg-light p-4">
+    <h3>Something went wrong !</h3>
+    <h4>Your payment is faild due to some error !</h4>
+    <h4>Please try again !</h4>
+    <a href=" {% url 'mycourse' %} " class="btn btn-primary">Your Course</a>
+</div>
+
+{% endblock content %}

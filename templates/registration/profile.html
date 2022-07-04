@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+{% block header_style %}
+<style>
+    .navbar{
+        background: #2f2d51;
+    }
+</style>
+{% endblock header_style %}
+{% block content %}
+{% load static %}
+
+    <!-- PAGE TITLE
+    ================================================== -->
+    <header class="py-8 py-md-11" style="background-image: none;">
+        <div class="container text-center py-xl-2">
+            <h1 class="display-4 fw-semi-bold mb-0">Profile</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-scroll justify-content-center">
+                    <li class="breadcrumb-item">
+                        <a class="text-gray-800" href=" {% url 'home' %} ">
+                            Home
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                        Profile
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <!-- Img -->
+        <img class="d-none img-fluid" src="...html" alt="...">
+    </header>
+
+
+    <!-- CONTACT
+    ================================================== -->
+    <div class="container ">
+        <div class="row row-cols-md-2 mb-8 mb-lg-11 d-flex justify-content-center">
+            <div class="col-md">
+                <div class="container-fluid d-flex justify-content-center p-3">
+                    <img src="{{user_profile.profile_image}}"  class="rounded-circle m-3" style=" width:100px;height: 100px;background-size: contain;" alt="">
+                </div>
+                
+                <h1 class="mb-6 d-flex justify-content-center">Update Profile</h1>
+                {% include "components/msg.html" %}
+
+                <div class="container-fluid d-flex justify-content-center p-3">
+                    <form method="post" enctype="multipart/form-data" action=" {% url 'image_upload' %} " class="container-fluid d-flex justify-content-center p-3 align-items-center">
+                        {% csrf_token %}
+                        <input type="file" name="image" id="">
+                        <button class="badge badge-primary " type="submit" style="height:40px; border:0; border-radius: 10px;" data-toggle="tooltip" data-placement="top" title="Upload Image">UPLOAD</button>
+                    </form>
+                </div>
+                
+                <form class="row" action=" {% url 'profile_update' %} " method="post">
+                    {% csrf_token %}
+                    <div class="form-group mb-6 col-xl-6">
+                        <label for="exampleInputTitle1">FirstName</label>
+                        <input type="text" class="form-control placeholder-1" name="firstname" id="exampleInputTitle1" placeholder="" value="{{user.first_name}}">
+                    </div>
+                    <div class="form-group mb-6 col-xl-6">
+                        <label for="exampleInputTitle2">LastName</label>
+                        <input type="text" class="form-control placeholder-2" name="lastname" id="exampleInputTitle2" placeholder="" value="{{user.last_name}}">
+                    </div>
+                    
+                    <div class="form-group mb-6 col-xl-6">
+                        <label for="exampleInputTitle5">Username</label>
+                        <input type="text" class="form-control placeholder-5" name="username" id="exampleInputTitle5" placeholder="" readonly value="{{user.username}}">
+                    </div>
+
+                    <div class="form-group mb-6 col-xl-6">
+                        <label for="exampleInputTitle3">Email</label>
+                        <input type="email" class="form-control placeholder-3" name="email" id="exampleInputTitle3" placeholder="" readonly value="{{user.email}}">
+                    </div>
+
+                    <div class="form-group mb-6 col-xl-12">
+                        <label for="exampleInputTitle4">Password</label>
+                        <input type="password" class="form-control placeholder-4" name="password" id="exampleInputTitle4" placeholder="********">
+                    </div>
+                    
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-block mw-md-300p">UPDATE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
