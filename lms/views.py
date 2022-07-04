@@ -4,6 +4,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse, JsonResponse
 from app.models import Categories, Author, Course, Level, Usercourse, Video, Lesson, Payment, Review, Blog
 from django.template.loader import render_to_string
+from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Sum
 import razorpay
@@ -44,9 +45,16 @@ def COURSES(request):
     category = Categories.objects.all().order_by('id') 
     author = Author.objects.all().order_by('id')
     level = Level.objects.all().order_by('id')
+
+    paginator = Paginator(course,9)
+    page_no = request.GET.get('page')
+
+    CourseFinal = paginator.get_page(page_no)
+    total_page = CourseFinal.paginator.num_pages
     
     data = {
-        'course':course,
+        'course':CourseFinal,
+        'total_page':total_page,
         'category':category,
         'author':author,
         'level':level,
