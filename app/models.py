@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from email.policy import default
 from email.quoprimime import quote
 from enum import unique
@@ -138,6 +139,17 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title + " - " + self.author.name
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='event-image',null=True)
+    date = models.CharField(max_length=100)
+    time = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+    
 
 class Review(models.Model):
 

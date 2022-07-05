@@ -399,7 +399,7 @@
                                     </svg>
 
                                 </div>
-                                4.87 Instructor rating
+                                {% author_course_avg_rating course.author.course_set.all %} Instructor rating
                             </div>
                         </div>
 
@@ -412,7 +412,7 @@
                                     </svg>
 
                                 </div>
-                                1,533 reviews
+                                {% author_course_review course.author.course_set.all %} reviews
                             </div>
                         </div>
 

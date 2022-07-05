@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Categories, Author, Course, Level, Language, Requirement, What_you_learn, Lesson, Video, Usercourse, Payment, Review, User_Profile, Blog
+from app.models import Categories, Author, Course, Level, Language, Requirement, What_you_learn, Lesson, Video, Usercourse, Payment, Review, User_Profile, Blog, Event
 
 
 class What_you_learn_tublar(admin.TabularInline):
@@ -32,3 +32,4 @@ admin.site.register(Payment)
 admin.site.register(Review)
 admin.site.register(User_Profile)
 admin.site.register(Blog)
+admin.site.register(Event)

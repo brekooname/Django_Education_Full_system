@@ -2,7 +2,7 @@ from locale import currency
 from unicodedata import category
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, JsonResponse
-from app.models import Categories, Author, Course, Level, Usercourse, Video, Lesson, Payment, Review, Blog
+from app.models import Categories, Author, Course, Level, Usercourse, Video, Lesson, Payment, Review, Blog, Event
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -24,12 +24,14 @@ def HOME(request):
     category = Categories.objects.all().order_by('-id')[:8]
     author = Author.objects.all().order_by('-id')[:10]
     blog = Blog.objects.all().order_by('-id')[:3]
+    event = Event.objects.all().order_by('-id')[:6]
 
     data = {
         'category':category,
         'author':author,
         'course':course,
         'blog':blog,
+        'event':event,
     }
 
     return render(request,'Main/home.html',data)
